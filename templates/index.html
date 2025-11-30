@@ -4,6 +4,7 @@
 
     <div class="container">
         <h2>Add ToDo</h2>
+        {% if current_user %}
         <form action="/" method="POST">
             <div class="my-3">
                 <label for="title" class="form-label">To_Do Title</label>
@@ -17,16 +18,28 @@
 
             <button type="submit" class="btn btn-dark">Submit</button>
         </form>
+        {% else %}
+        <div class="alert alert-info">
+            Please <a href="/auth">log in</a> to add a new ToDo.
+        </div>
+        {% endif %}
     </div>
 
     <div class="container">
         <h3 class="my-3">Your ToDos</h3>
 
         {% if alltodo|length == 0 %}
+        {% if current_user %}
         <div class="alert alert-primary" role="alert">
-            ADD ToDos TO SHOW HERE! 
+            You don't have any ToDos yet. Use the form above to add your first ToDo.
         </div>
         {% else %}
+        <div class="alert alert-primary" role="alert">
+            Please log in to see your ToDos_List.
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
@@ -41,10 +54,10 @@
                 {% for ToDo in alltodo %}
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
-                    <td>{{ ToDo.title }}</td>
-                    <td>{{ ToDo.desc }}</td>
-                    <td>{{ ToDo.date_created }}</td>
-                    <td>
+                    <td data-label="Title">{{ ToDo.title }}</td>
+                    <td data-label="Description">{{ ToDo.desc }}</td>
+                    <td data-label="Date_Time">{{ ToDo.date_created }}</td>
+                    <td data-label="Actions">
                         <a href="/update/{{ ToDo.sno }}" class="btn btn-outline-dark btn-sm mx-1">Update</a>
                         <a href="/delete/{{ ToDo.sno }}" class="btn btn-outline-dark btn-sm mx-1">Delete</a>
                     </td>
@@ -52,6 +65,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        </div>
         {% endif %}
 
 

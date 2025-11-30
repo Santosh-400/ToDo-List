@@ -146,7 +146,7 @@ Heroku-specific notes: Heroku requires `requirements.txt`, a `Procfile`, and opt
 - Add tests and CI integration
 
 ## Contact
-If you'd like help extending this project, open an issue or email: you@example.com
+If you'd like help extending this project, open an issue or email: santoshsunadholi13@gmail.com
 
 ---
 

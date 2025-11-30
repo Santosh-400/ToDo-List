@@ -1,0 +1,42 @@
+/* Custom styles for mobile friendliness and small tweaks */
+:root{
+  --brand-color: #0d6efd;
+}
+
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  padding-bottom: 2rem;
+}
+
+/* Make the main container slightly constrained on very large screens */
+.container{
+  max-width: 1100px;
+}
+
+/* Table responsiveness handled by Bootstrap .table-responsive, tweak font-size */
+table.table td, table.table th{
+  vertical-align: middle;
+}
+
+/* Make action buttons easier to tap on phones */
+.btn{
+  min-height: 40px;
+}
+
+/* Small screens adjustments */
+@media (max-width: 576px){
+  .card .btn, .btn{ width: 100%; }
+  .navbar-brand{ font-size: 1.05rem; }
+  .table thead{ display: none; }
+  .table tbody td{ display: block; width: 100%; }
+  .table tbody tr{ display: block; margin-bottom: 1rem; border-bottom: 1px solid #e9ecef; }
+  .table tbody td:before{ /* label the cells */
+    content: attr(data-label);
+    font-weight: 600;
+    display: inline-block;
+    width: 35%;
+  }
+}
+
+/* flash messages spacing */
+.flash-wrapper{ margin-top: .75rem; }
