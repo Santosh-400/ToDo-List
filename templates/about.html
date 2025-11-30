@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container py-5">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-5">
+      <div class="card shadow-sm">
+        <img src="{{ url_for('static', filename='Me.png') }}" class="card-img-top" alt="About image">
+        <div class="card-body">
+          <h3 class="card-title">About Me</h3>
+          <p class="card-text text-muted">Hi — I'm the developer of this small ToDo project. I built this app to learn Flask, templating with Jinja2, and integrating a lightweight SQLite database with Flask-SQLAlchemy.</p>
+          <p class="mb-0">I enjoy building small, useful apps that help me practice full-stack basics: routing, templates, forms, and persistence. This project is intentionally simple and easy to extend.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <h1 class="mb-3">MyToDo — Simple ToDo Manager</h1>
+      <p class="lead text-secondary">A minimal ToDo app implemented with Flask and Bootstrap. It demonstrates:</p>
+      <ul class="list-group mb-4">
+        <li class="list-group-item">Flask routing and view functions</li>
+        <li class="list-group-item">Jinja2 templates and template inheritance</li>
+        <li class="list-group-item">Form handling and CRUD operations</li>
+        <li class="list-group-item">Flask-SQLAlchemy with SQLite for storage</li>
+      </ul>
+
+      <h4 class="mb-2">How it works</h4>
+      <p class="text-muted">When you add a ToDo, the server saves it to a local SQLite database. The main page lists all saved todos and lets you update or delete items. The layout uses Bootstrap for responsive, clean design.</p>
+
+      <h4 class="mt-4">Ideas & Next Steps</h4>
+      <p class="text-muted mb-0">Planned improvements include authentication, better form validation, due dates, and persisting user-specific lists. Contributions and feedback are welcome.</p>
+
+      <div class="mt-4">
+        <a href="/" class="btn btn-primary me-2">Back to Home</a>
+        <a href="mailto:you@example.com" class="btn btn-outline-secondary">Contact</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
