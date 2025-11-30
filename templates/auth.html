@@ -11,20 +11,13 @@
     </div>
   </div>
   {% endif %}
-  <div class="row">
+  <div class="row g-4 align-items-stretch">
     <div class="col-md-6">
-      <div class="card mb-4 shadow-sm">
-        <div class="card-body">
+      <div class="card mb-4 shadow-sm h-100">
+        <div class="card-body d-flex flex-column">
           <h4 class="card-title">Login</h4>
-          {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, msg in messages %}
-              <div class="alert alert-{{ category }}" role="alert">{{ msg }}</div>
-            {% endfor %}
-          {% endif %}
-          {% endwith %}
 
-          <form method="POST" action="/auth">
+          <form method="POST" action="/auth" class="flex-grow-1 d-flex flex-column">
             <input type="hidden" name="action" value="login">
             <div class="mb-3">
               <label for="loginEmail" class="form-label">Email</label>
@@ -34,7 +27,7 @@
               <label for="loginPassword" class="form-label">Password</label>
               <input type="password" class="form-control" id="loginPassword" name="password" required>
             </div>
-            <div class="d-grid gap-2">
+            <div class="mt-auto d-grid gap-2">
               <button type="submit" class="btn btn-primary">Login</button>
             </div>
           </form>
@@ -43,10 +36,10 @@
     </div>
 
     <div class="col-md-6">
-      <div class="card mb-4 shadow-sm">
-        <div class="card-body">
+      <div class="card mb-4 shadow-sm h-100">
+        <div class="card-body d-flex flex-column">
           <h4 class="card-title">Sign Up</h4>
-          <form method="POST" action="/auth">
+          <form method="POST" action="/auth" class="flex-grow-1 d-flex flex-column">
             <input type="hidden" name="action" value="signup">
             <div class="mb-3">
               <label for="signupUsername" class="form-label">Username</label>
@@ -60,7 +53,7 @@
               <label for="signupPassword" class="form-label">Password</label>
               <input type="password" class="form-control" id="signupPassword" name="password" required>
             </div>
-            <div class="d-grid gap-2">
+            <div class="mt-auto d-grid gap-2">
               <button type="submit" class="btn btn-success">Create Account</button>
             </div>
           </form>

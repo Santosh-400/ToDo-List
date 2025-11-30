@@ -38,5 +38,15 @@ table.table td, table.table th{
   }
 }
 
+/* Ensure auth cards stretch so submit buttons align to the bottom */
+.card.h-100 {
+  display: flex;
+  flex-direction: column;
+}
+.card.h-100 .card-body {
+  display: flex;
+  flex-direction: column;
+}
+
 /* flash messages spacing */
 .flash-wrapper{ margin-top: .75rem; }

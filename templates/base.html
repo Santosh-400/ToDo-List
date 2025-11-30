@@ -28,21 +28,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About</a>
                     </li>
-                    {% if current_user %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ current_user.username }}
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
-                        </ul>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth">Login</a>
-                    </li>
-                    {% endif %}
+                    <!-- user/profile controls moved to the right side of the navbar -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -61,15 +47,53 @@
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                <!-- Right-side user controls (login/profile/logout) replacing the search form -->
+                <div class="d-flex align-items-center">
+                    {% if current_user %}
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ current_user.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <a class="btn btn-outline-primary" href="/auth">Login</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </nav>
+        <!-- Global flash messages -->
+        <div class="container flash-wrapper" id="flash-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, msg in messages %}
+                        <div class="alert alert-{{ category }}" role="alert">{{ msg }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
 {% block body %}
     
 {% endblock body %}
+        <script>
+            // Auto-dismiss flash messages after 2 seconds
+            window.addEventListener('DOMContentLoaded', function(){
+                const flashContainer = document.getElementById('flash-container');
+                if(!flashContainer) return;
+                const alerts = flashContainer.querySelectorAll('.alert');
+                alerts.forEach(function(alert){
+                    setTimeout(function(){
+                        // fade out (optional) then remove
+                        alert.classList.add('fade');
+                        // remove after CSS transition (300ms) or fallback
+                        setTimeout(function(){ if(alert.parentNode) alert.parentNode.removeChild(alert); }, 350);
+                    }, 2000);
+                });
+            });
+        </script>
 </body>
 </html>
